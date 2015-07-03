@@ -1,7 +1,7 @@
 # quickBy
 The "by" function in R is a wrapper function of the "tapply" function. It is very useful because it applies a user defined function to each subset of the data grouped by some IDs. However, since the function is user defined, ordinary subsetting and for loops are implemented. This is unnecessarily slow when the user only wants to calculate some basic statistics.
 
-I implemented these C routines in R while I was doing a project where I just want to calculate the mean, sum, count, min, max for a variable of each subset grouped by some IDs. Because I have many unique IDs, my running time gets reduced from 3000 seconds to 5 seconds.
+I implemented these C routines in R while I was doing a project when I just want to calculate the mean, sum, count, min, max for a variable of each subset grouped by some IDs. Because I have many unique IDs, my running time gets reduced from 3000 seconds to 5 seconds.
 
 ```
 ### The code is simple to use
