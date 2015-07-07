@@ -11,9 +11,6 @@ dyn.load("calcMax.so")
 dyn.load("merge.so")
 
 quickBy = function(keys, values, method){
-  options(error = NULL)
-  options(warn = 10)
-
 	if(length(keys)!=length(values))
 		stop("ERROR: lengths do not match between keys and values.")
 
