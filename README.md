@@ -1,5 +1,5 @@
 # quickBy
-The "by" function in R is a wrapper function of the "tapply" function. It is very useful because it applies a user defined function to each subset of the data grouped by some IDs. However, since the function is user defined, ordinary subsetting and for loops are implemented. This is unnecessarily slow when the user only wants to calculate some basic statistics.
+The "by" function in R is a wrapper function of the "tapply" function. It is very useful because it applies a user defined function to each subset of the data grouped by some IDs. However, since the user defined function is unknow, it is hard to optimize the "by" function. Hence, ordinary subsetting and for loops are implemented. This is unnecessarily slow when the user only wants to calculate some basic statistics.
 
 I implemented these C routines in R while I was doing a project when I just want to calculate the mean, sum, count, min, max for a variable of each subset grouped by some IDs. Because I have many unique IDs, my running time gets reduced from 3000 seconds to 5 seconds.
 
@@ -11,21 +11,20 @@ I implemented these C routines in R while I was doing a project when I just want
 source("wrapper.R") # you need to have C complier
 
 ### Now the function is ready. Set the working directory to your project
-### quickBy function needs 4 inputs
-### quickBy(keys, values, method, expand)
+### quickBy function needs 3 inputs
+### quickBy(keys, values, method)
 ### "keys" is the ID/factor variable of each subset. 
 ### "values" is the numerical vairable that you want to calculate on
 ### "method" needs to be set to one of the following:
 ###									 "min", "max", "sum", "count", "mean"
-### "expand" deals with situations with NAs. The default values is TRUE.
 ### The function returns a vector that has the same length with keys and values
 
 ### EXAMPLE
-keys =    c(NA, 1,  1,  1,  3,  3, 3, 3)
-values =  c(2,  10, 10, 10, NA, 7, 7, 7)
+keys =    c(0,  NA, 1,  1,  1,  3,  3, 3, 3)
+values =  c(NA, 2,  10, 11, 12, NA, 7, 8, 9)
 
-quickBy(keys, values, method="sum", expand=TRUE)
-[1] NA 30 30 30 NA 21 21 21
+quickBy(keys, values, method="mean")
+[1] NA NA 11 11 11  8  8  8  8
 ```
 
 -
